@@ -1,4 +1,4 @@
--- lua/myfiles/keymap-helper/keymaps.lua
+-- keymaps.lua
 local keymaps = {
   -- Define your keymaps here
   -- Format: { "<key>", "<command>" }
@@ -7,3 +7,4 @@ local keymaps = {
 }
 
 return keymaps
+
