@@ -7,6 +7,7 @@ local api = vim.api
 local keymaps = require('keymaps') -- Assuming keymaps.lua is at the root of the repository
 
 local M = {}
+local winnr = nil
 
 function M.show_keymaps()
   -- Create and display the keymap window
@@ -25,6 +26,15 @@ function M.show_keymaps()
 
   api.nvim_win_set_option(winnr, "title", "Keymap Helper")
   api.nvim_win_set_option(winnr, "modifiable", false)
+
+  api.nvim_buf_set_keymap(bufnr, "n", "<Esc>", ':lua require("keymap-helper").close_keymaps()<CR>', { noremap = true, silent = true })
+end
+
+function M.close_keymaps()
+  -- Close the keymap window
+  if winnr and api.nvim_win_is_valid(winnr) then
+    api.nvim_win_close(winnr, true)
+  end
 end
 
 return M
